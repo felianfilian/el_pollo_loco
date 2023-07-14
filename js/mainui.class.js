@@ -11,12 +11,18 @@ class MainUI extends Drawable {
   ];
 
   constructor() {
+    super();
     this.loadImages(this.IMAGES_UI);
+    this.setPercentage(100);
+    this.x = 20;
+    this.y = 20;
+    this.width = 200;
+    this.height = 60;
   }
 
   setPercentage(percentage) {
     this.percentage = percentage;
-    let path = this.IMAGES_UI(this.resolveImageIndex());
+    let path = this.IMAGES_UI[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }
 

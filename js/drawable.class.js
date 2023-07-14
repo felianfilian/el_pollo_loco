@@ -5,7 +5,7 @@ class Drawable {
   width = 100;
 
   img;
-  imageChache = [];
+  imageCache = [];
   currentImage = 0;
   deathImage = 0;
 
@@ -23,7 +23,7 @@ class Drawable {
     arr.forEach((path) => {
       let img = new Image();
       img.src = path;
-      this.imageChache[path] = img;
+      this.imageCache[path] = img;
     });
   }
 

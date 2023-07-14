@@ -5,6 +5,7 @@ class World {
   camera_x = -100;
 
   character = new Character(100, 80);
+  mainui = new MainUI();
   level = level01;
 
   constructor(canvas, keyboard) {
@@ -25,6 +26,7 @@ class World {
     this.addToCanvas(this.character);
     this.iterateDrawObjects(this.level.clouds);
     this.iterateDrawObjects(this.level.enemies);
+    this.drawMainUI();
 
     this.ctx.translate(-this.camera_x, 0);
 
@@ -32,6 +34,12 @@ class World {
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  drawMainUI() {
+    this.ctx.translate(-this.camera_x, 0);
+    this.addToCanvas(this.mainui);
+    this.ctx.translate(this.camera_x, 0);
   }
 
   setworld() {
@@ -80,8 +88,8 @@ class World {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy) && !this.character.isHurt()) {
-          this.character.getDamage(2);
-          console.log("Energy: " + this.character.energy);
+          this.character.getDamage(5);
+          this.mainui.setPercentage(this.character.energy);
         }
       });
     }, 200);
