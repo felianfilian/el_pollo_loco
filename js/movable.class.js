@@ -1,18 +1,10 @@
 class Movable extends Drawable {
-  x = 120;
-  y = 340;
-  height = 100;
-  width = 100;
   speed = 0.4;
   speedY = 0;
   acceleration = 2.5;
   groundLevel = 140;
   energy = 100;
 
-  img;
-  imageChache = [];
-  currentImage = 0;
-  deathImage = 0;
   lookLeft = false;
   lastHit = 0;
 
