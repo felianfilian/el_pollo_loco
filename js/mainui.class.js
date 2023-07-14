@@ -14,7 +14,10 @@ class MainUI extends Drawable {
     this.loadImages(this.IMAGES_UI);
   }
 
-  setPercentage(percentage) {}
+  setPercentage(percentage) {
+    this.percentage = percentage;
+    let path = this.IMAGES_UI(this.resolveImageIndex());
+  }
 
   resolveImageIndex() {
     if (this.percentage == 10) {
