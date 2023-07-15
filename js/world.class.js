@@ -9,6 +9,8 @@ class World {
   mainui = new MainUI();
   level = level01;
 
+  nextBottle = true;
+
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -118,7 +120,16 @@ class World {
   }
 
   checkThrow() {
-    let bottle = new Throwable(this.character.x + 100, this.character.y + 100);
-    this.throwable.push(bottle);
+    if (this.nextBottle) {
+      this.nextBottle = false;
+      let bottle = new Throwable(
+        this.character.x + 100,
+        this.character.y + 100
+      );
+      this.throwable.push(bottle);
+      setTimeout(() => {
+        this.nextBottle = true;
+      }, 1000);
+    }
   }
 }
