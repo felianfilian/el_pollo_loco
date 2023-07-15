@@ -9,6 +9,7 @@ class Throwable extends Movable {
     this.width = 70;
     if (direction == true) {
       this.forceX = -10;
+      this.x = x - 100;
     }
     console.log(this.direction);
     this.throw(this.x, this.y);

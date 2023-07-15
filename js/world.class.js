@@ -56,9 +56,10 @@ class World {
     this.addToCanvas(this.mainui);
 
     // show Energy
-    this.ctx.font = "18px Arial";
+    this.ctx.font = "16px Arial";
     this.ctx.fillStyle = "white";
-    this.ctx.fillText(this.character.energy, 120, 68);
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(this.character.energy, 40, 62);
 
     this.ctx.translate(this.camera_x, 0);
   }
