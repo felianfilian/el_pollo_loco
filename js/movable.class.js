@@ -32,7 +32,7 @@ class Movable extends Drawable {
   playAnimationOnce(images) {
     if (this.deathImage < images.length - 1) {
       let path = images[this.deathImage];
-      this.img = this.imageChache[path];
+      this.img = this.imageCache[path];
       this.deathImage++;
     }
   }

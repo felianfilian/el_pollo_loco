@@ -39,6 +39,12 @@ class World {
   drawMainUI() {
     this.ctx.translate(-this.camera_x, 0);
     this.addToCanvas(this.mainui);
+
+    // show Energy
+    this.ctx.font = "18px Arial";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(this.character.energy, 120, 68);
+
     this.ctx.translate(this.camera_x, 0);
   }
 
@@ -90,8 +96,13 @@ class World {
         if (this.character.isColliding(enemy) && !this.character.isHurt()) {
           this.character.getDamage(5);
           this.mainui.setPercentage(this.character.energy);
+          this.txtEnergy();
         }
       });
     }, 200);
+  }
+
+  txtEnergy() {
+    this.drawMainUI();
   }
 }
