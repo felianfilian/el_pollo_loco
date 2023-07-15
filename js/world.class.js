@@ -124,7 +124,8 @@ class World {
       this.nextBottle = false;
       let bottle = new Throwable(
         this.character.x + 100,
-        this.character.y + 100
+        this.character.y + 100,
+        this.character.lookLeft
       );
       this.throwable.push(bottle);
       setTimeout(() => {
