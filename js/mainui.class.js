@@ -29,11 +29,11 @@ class MainUI extends Drawable {
   resolveImageIndex() {
     if (this.percentage == 100) {
       return 5;
-    } else if (this.percentage > 75) {
+    } else if (this.percentage > 65) {
       return 4;
-    } else if (this.percentage > 50) {
+    } else if (this.percentage > 35) {
       return 3;
-    } else if (this.percentage > 25) {
+    } else if (this.percentage > 15) {
       return 2;
     } else if (this.percentage > 0) {
       return 1;

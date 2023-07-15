@@ -74,19 +74,27 @@ class Character extends Movable {
   movement() {
     setInterval(() => {
       this.sound_jump.pause();
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.moveRight();
-        this.lookLeft = false;
-      }
-      if (this.world.keyboard.LEFT && this.x > 0) {
-        this.moveLeft();
-        this.lookLeft = true;
+      if (!this.isDead()) {
+        if (
+          this.world.keyboard.RIGHT &&
+          this.x < this.world.level.level_end_x
+        ) {
+          this.moveRight();
+          this.lookLeft = false;
+        }
+        if (this.world.keyboard.LEFT && this.x > 0) {
+          this.moveLeft();
+          this.lookLeft = true;
+        }
+        if (this.world.keyboard.SPACE && this.isGrounded()) {
+          super.jump();
+          this.sound_jump.play();
+        }
+        if (this.world.keyboard.UP) {
+          this.world.checkThrow();
+        }
       }
 
-      if (this.world.keyboard.SPACE && this.isGrounded()) {
-        super.jump();
-        this.sound_jump.play();
-      }
       this.world.camera_x = -this.x + 100;
     }, 1000 / 30);
   }

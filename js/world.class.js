@@ -26,7 +26,7 @@ class World {
 
   update() {
     this.checkCollissions();
-    this.checkTrow();
+    //this.checkTrow();
   }
 
   draw() {
@@ -117,14 +117,8 @@ class World {
     this.drawMainUI();
   }
 
-  checkTrow() {
-    console.log("throw");
-    if (this.keyboard.UP) {
-      let bottle = new Throwable(
-        this.character.x + 100,
-        this.character.y + 100
-      );
-      this.throwable.push(bottle);
-    }
+  checkThrow() {
+    let bottle = new Throwable(this.character.x + 100, this.character.y + 100);
+    this.throwable.push(bottle);
   }
 }
