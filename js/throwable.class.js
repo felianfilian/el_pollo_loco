@@ -6,4 +6,14 @@ class Throwable extends Movable {
     this.height = 60;
     this.width = 50;
   }
+
+  throw() {
+    this.x = x;
+    this.y = y;
+    this.speedY = 30;
+    this.applyGravity();
+    setInterval(() => {
+      this.x += 10;
+    }, 25);
+  }
 }
