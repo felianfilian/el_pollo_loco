@@ -15,7 +15,18 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setworld();
+    this.run();
+  }
+
+  run() {
+    setInterval(() => {
+      this.update();
+    }, 100);
+  }
+
+  update() {
     this.checkCollissions();
+    this.checkTrow();
   }
 
   draw() {
@@ -93,18 +104,27 @@ class World {
   }
 
   checkCollissions() {
-    setInterval(() => {
-      this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy) && !this.character.isHurt()) {
-          this.character.getDamage(5);
-          this.mainui.setPercentage(this.character.energy);
-          this.txtEnergy();
-        }
-      });
-    }, 200);
+    this.level.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy) && !this.character.isHurt()) {
+        this.character.getDamage(5);
+        this.mainui.setPercentage(this.character.energy);
+        this.txtEnergy();
+      }
+    });
   }
 
   txtEnergy() {
     this.drawMainUI();
+  }
+
+  checkTrow() {
+    console.log("throw");
+    if (this.keyboard.UP) {
+      let bottle = new Throwable(
+        this.character.x + 100,
+        this.character.y + 100
+      );
+      this.throwable.push(bottle);
+    }
   }
 }
