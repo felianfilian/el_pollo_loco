@@ -5,6 +5,7 @@ class World {
   camera_x = -100;
 
   character = new Character(100, 80);
+  throwable = [new Throwable(100, 150)];
   mainui = new MainUI();
   level = level01;
 
@@ -22,10 +23,11 @@ class World {
 
     this.ctx.translate(this.camera_x, 0);
 
-    this.iterateDrawObjects(this.level.backgrounds);
+    this.addArrayToCanvas(this.level.backgrounds);
     this.addToCanvas(this.character);
-    this.iterateDrawObjects(this.level.clouds);
-    this.iterateDrawObjects(this.level.enemies);
+    this.addArrayToCanvas(this.level.clouds);
+    this.addArrayToCanvas(this.level.enemies);
+    this.addArrayToCanvas(this.throwable);
     this.drawMainUI();
 
     this.ctx.translate(-this.camera_x, 0);
@@ -52,7 +54,7 @@ class World {
     this.character.world = this;
   }
 
-  iterateDrawObjects(drawItems) {
+  addArrayToCanvas(drawItems) {
     drawItems.forEach((drawItem) => {
       this.addToCanvas(drawItem);
     });

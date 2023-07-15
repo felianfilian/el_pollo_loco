@@ -5,9 +5,10 @@ class Throwable extends Movable {
     this.y = y;
     this.height = 60;
     this.width = 50;
+    this.throw(this.x, this.y);
   }
 
-  throw() {
+  throw(x, y) {
     this.x = x;
     this.y = y;
     this.speedY = 30;
