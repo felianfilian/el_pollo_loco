@@ -1,5 +1,25 @@
 class Sound {
-  bg_music = "";
+  bg_music;
+  sfx_sounds;
 
-  startBgMusic() {}
+  constructor() {
+    this.bg_music = new Audio("audio/music/mexico01.mp3");
+    this.sfx_sounds = [
+      new Audio("audio/walk01.wav"),
+      new Audio("audio/jump01.wav"),
+    ];
+  }
+
+  startBgMusic() {
+    this.bg_music.play();
+    this.bg_music.loop = true;
+  }
+
+  playSFX(index) {
+    this.sfx_sounds[index].play();
+  }
+
+  pauseSFX(index) {
+    this.sfx_sounds[index].pause();
+  }
 }

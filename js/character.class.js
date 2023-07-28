@@ -47,8 +47,12 @@ class Character extends Movable {
 
   speed = 8;
 
-  sound_walk = new Audio("audio/walk01.wav");
-  sound_jump = new Audio("audio/jump01.wav");
+  offset = {
+    top: 120,
+    right: 30,
+    bottom: 40,
+    left: 30,
+  };
 
   constructor(x, y) {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
@@ -73,7 +77,6 @@ class Character extends Movable {
 
   movement() {
     setInterval(() => {
-      this.sound_jump.pause();
       if (!this.isDead()) {
         if (
           this.world.keyboard.RIGHT &&
@@ -88,7 +91,7 @@ class Character extends Movable {
         }
         if (this.world.keyboard.SPACE && this.isGrounded()) {
           super.jump();
-          this.sound_jump.play();
+          this.world.sound.playSFX(1);
         }
         if (this.world.keyboard.UP) {
           this.world.checkThrow();
@@ -101,7 +104,7 @@ class Character extends Movable {
 
   animate() {
     setInterval(() => {
-      this.sound_walk.pause();
+      this.world.sound.pauseSFX(0);
       if (this.isDead()) {
         this.playAnimationOnce(this.ANIM_DEAD);
       } else {
@@ -111,7 +114,7 @@ class Character extends Movable {
           this.playAnimation(this.ANIM_JUMP);
         } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
           this.playAnimation(this.ANIM_WALK);
-          this.sound_walk.play();
+          this.world.sound.playSFX(0);
         } else {
           this.playAnimation(this.ANIM_IDLE);
         }

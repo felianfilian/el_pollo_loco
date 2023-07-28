@@ -5,8 +5,9 @@ class World {
   camera_x = -100;
 
   character = new Character(100, 80);
-  throwable = [new Throwable(100, 150)];
+  throwable = [];
   mainui = new MainUI();
+  sound = new Sound();
   level = level01;
 
   nextBottle = true;
@@ -18,6 +19,7 @@ class World {
     this.draw();
     this.setworld();
     this.run();
+    this.sound.startBgMusic();
   }
 
   run() {
@@ -28,7 +30,6 @@ class World {
 
   update() {
     this.checkCollissions();
-    //this.checkTrow();
   }
 
   draw() {
