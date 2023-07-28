@@ -1,3 +1,12 @@
+/**
+ * canvas
+ * canvas element used for rendering
+ * @type {HTMLCanvaselement}
+ *
+ * keyboard
+ * class to setup the keys for the input
+ */
+
 let canvas;
 let ctx;
 let world;

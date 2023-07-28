@@ -19,14 +19,15 @@ class MainUI extends Drawable {
     "img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png",
   ];
 
-  constructor() {
+  constructor(x, y, height, width) {
     super();
     this.loadImages(this.IMAGES_HEALTH_UI);
+    this.loadImages(this.IMAGES_COINS_UI);
     this.setPercentage(100);
-    this.x = 20;
-    this.y = 20;
-    this.width = 200;
-    this.height = 60;
+    this.x = x;
+    this.y = y;
+    this.height = height;
+    this.width = width;
   }
 
   setPercentage(percentage) {

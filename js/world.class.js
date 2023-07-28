@@ -6,7 +6,7 @@ class World {
 
   character = new Character(100, 80);
   throwable = [];
-  mainui = new MainUI();
+  mainui = new MainUI(20, 20, 60, 200);
   sound = new Sound();
   level = level01;
 
