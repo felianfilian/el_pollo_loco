@@ -52,3 +52,7 @@ window.addEventListener("keyup", (e) => {
     keyboard.DOWN = false;
   }
 });
+
+function startBgMusic() {
+  world.sound.startBgMusic();
+}

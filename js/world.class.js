@@ -7,8 +7,9 @@ class World {
   character = new Character(100, 80);
   throwable = [];
   mainui = new MainUI(20, 20, 60, 200);
-  sound = new Sound();
   level = level01;
+
+  sound = new Sound();
 
   nextBottle = true;
 
@@ -19,7 +20,6 @@ class World {
     this.draw();
     this.setworld();
     this.run();
-    this.sound.startBgMusic();
   }
 
   run() {

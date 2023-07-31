@@ -15,6 +15,10 @@ class Sound {
     this.bg_music.loop = true;
   }
 
+  stopBgMusic() {
+    this.bg_music.pause();
+  }
+
   playSFX(index) {
     this.sfx_sounds[index].play();
   }
