@@ -56,3 +56,7 @@ window.addEventListener("keyup", (e) => {
 function startBgMusic() {
   world.sound.startBgMusic();
 }
+
+function startGame() {
+  document.getElementById("start-screen").style.display = "none";
+}
