@@ -138,9 +138,10 @@ class World {
   }
 
   drawClouds() {
+    console.log("new cloud");
     setInterval(() => {
       this.level.clouds.push(
-        new Cloud("img/5_background/layers/4_clouds/1.png")
+        new Cloud("img/5_background/layers/4_clouds/1.png", 719 * 4)
       );
     }, 5000);
   }
