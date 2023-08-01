@@ -1,5 +1,5 @@
 class Movable extends Drawable {
-  speed = 0.4;
+  speedX = 0.4;
   speedY = 0;
   acceleration = 2.5;
   groundLevel = 140;
@@ -16,11 +16,11 @@ class Movable extends Drawable {
   };
 
   moveRight() {
-    this.x += this.speed;
+    this.x += this.speedX;
   }
 
   moveLeft() {
-    this.x -= this.speed;
+    this.x -= this.speedX;
   }
 
   jump() {

@@ -20,6 +20,7 @@ class World {
     this.draw();
     this.setworld();
     this.run();
+    this.drawClouds();
   }
 
   run() {
@@ -38,8 +39,8 @@ class World {
     this.ctx.translate(this.camera_x, 0);
 
     this.addArrayToCanvas(this.level.backgrounds);
-    this.addToCanvas(this.character);
     this.addArrayToCanvas(this.level.clouds);
+    this.addToCanvas(this.character);
     this.addArrayToCanvas(this.level.enemies);
     this.addArrayToCanvas(this.throwable);
     this.drawMainUI();
@@ -134,5 +135,13 @@ class World {
         this.nextBottle = true;
       }, 1000);
     }
+  }
+
+  drawClouds() {
+    setInterval(() => {
+      this.level.clouds.push(
+        new Cloud("img/5_background/layers/4_clouds/1.png")
+      );
+    }, 5000);
   }
 }

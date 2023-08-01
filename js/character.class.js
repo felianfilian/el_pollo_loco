@@ -45,7 +45,7 @@ class Character extends Movable {
     "img/2_character_pepe/4_hurt/H-43.png",
   ];
 
-  speed = 8;
+  speedX = 8;
 
   offset = {
     top: 120,
