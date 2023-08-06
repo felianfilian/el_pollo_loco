@@ -7,6 +7,7 @@ class Sound {
     this.sfx_sounds = [
       new Audio("audio/walk01.wav"),
       new Audio("audio/jump01.wav"),
+      new Audio("audio/coin01.wav"),
     ];
   }
 

@@ -121,6 +121,7 @@ class World {
     this.level.coins.forEach((coin, i) => {
       if (this.character.isColliding(coin)) {
         this.level.coins.splice(i, 1);
+        this.sound.playSFX(2);
       }
     });
   }
