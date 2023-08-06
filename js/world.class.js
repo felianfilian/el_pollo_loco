@@ -17,11 +17,11 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.createCoins();
     this.draw();
     this.setworld();
     this.run();
     this.drawClouds();
-    this.createCoins();
   }
 
   run() {
@@ -153,6 +153,8 @@ class World {
   }
 
   createCoins() {
-    this.level.coins.push(new Coin("img/8_coin/coin_1.png"));
+    for (let i = 0; i < 10; i++) {
+      this.level.coins.push(new Coin());
+    }
   }
 }

@@ -1,8 +1,8 @@
 class Coin extends Movable {
-  constructor(path) {
-    super().loadImage(path);
-    this.x = (50 + Math.random() * 1800).toFixed();
-    this.y = (100 + Math.random() * 100).toFixed();
+  constructor() {
+    super().loadImage("img/8_coin/coin_1.png");
+    this.x = 100 + Math.random() * 1800;
+    this.y = 100 + Math.random() * 100;
     this.height = 48;
     this.width = 48;
   }
