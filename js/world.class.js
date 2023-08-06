@@ -118,9 +118,9 @@ class World {
         this.txtEnergy();
       }
     });
-    this.level.coins.forEach((coin) => {
+    this.level.coins.forEach((coin, i) => {
       if (this.character.isColliding(coin)) {
-        console.log("coins up");
+        this.level.coins.splice(i, 1);
       }
     });
   }
