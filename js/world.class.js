@@ -21,6 +21,7 @@ class World {
     this.setworld();
     this.run();
     this.drawClouds();
+    this.createCoins();
   }
 
   run() {
@@ -43,6 +44,7 @@ class World {
     this.addToCanvas(this.character);
     this.addArrayToCanvas(this.level.enemies);
     this.addArrayToCanvas(this.throwable);
+    this.addArrayToCanvas(this.level.coins);
     this.drawMainUI();
 
     this.ctx.translate(-this.camera_x, 0);
@@ -116,6 +118,11 @@ class World {
         this.txtEnergy();
       }
     });
+    this.level.coins.forEach((coin) => {
+      if (this.character.isColliding(coin)) {
+        console.log("coins up");
+      }
+    });
   }
 
   txtEnergy() {
@@ -138,11 +145,14 @@ class World {
   }
 
   drawClouds() {
-    console.log("new cloud");
     setInterval(() => {
       this.level.clouds.push(
         new Cloud("img/5_background/layers/4_clouds/1.png", 719 * 4)
       );
     }, 5000);
+  }
+
+  createCoins() {
+    this.level.coins.push(new Coin("img/8_coin/coin_1.png"));
   }
 }
