@@ -13,7 +13,7 @@ canvas {
   border-radius: 16px;
 }
 
-#start-screen {
+.img-start {
   position: absolute;
 
   display: flex;
@@ -38,4 +38,19 @@ canvas {
 
   display: flex;
   justify-content: center;
+
+  max-width: 200px;
+
+  padding: 8px 16px;
+
+  background-color: rgb(236, 203, 19);
+  border: 3px solid black;
+  border-radius: 8px;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-start:hover {
+  background-color: rgb(255, 255, 30);
 }
