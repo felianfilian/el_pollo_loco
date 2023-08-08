@@ -59,4 +59,5 @@ function startBgMusic() {
 
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
+  document.getElementById("canvas").style.display = "block";
 }
