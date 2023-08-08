@@ -8,6 +8,13 @@ body {
   height: 100vh;
 
   margin: 0;
+
+  background-image: url("img/backgrounds/main_bg.jpg");
+  background-size: cover;
+}
+
+.content {
+  position: relative;
 }
 
 canvas {
