@@ -6,7 +6,8 @@ class World {
 
   character = new Character(100, 80);
   throwable = [];
-  mainui = new MainUI(20, 20, 60, 200);
+  healthUI = new HealthUI(20, 20, 60, 200);
+  coinhUI = new CoinUI(20, 80, 40, 40);
   level = level01;
 
   sound = new Sound();
@@ -57,13 +58,20 @@ class World {
 
   drawMainUI() {
     this.ctx.translate(-this.camera_x, 0);
-    this.addToCanvas(this.mainui);
+    this.addToCanvas(this.healthUI);
+    this.addToCanvas(this.coinhUI);
 
     // show Energy
     this.ctx.font = "16px Arial";
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
     this.ctx.fillText(this.character.energy, 40, 62);
+
+    // show Coins
+    this.ctx.font = "20px Arial";
+    this.ctx.fillStyle = "white";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(this.character.coins, 80, 108);
 
     this.ctx.translate(this.camera_x, 0);
   }
@@ -114,7 +122,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && !this.character.isHurt()) {
         this.character.getDamage(5);
-        this.mainui.setPercentage(this.character.energy);
+        this.healthUI.setPercentage(this.character.energy);
         this.txtEnergy();
       }
     });
@@ -122,6 +130,7 @@ class World {
       if (this.character.isColliding(coin)) {
         this.level.coins.splice(i, 1);
         this.sound.playSFX(2);
+        this.character.coins++;
       }
     });
   }

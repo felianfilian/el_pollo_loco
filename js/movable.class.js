@@ -3,7 +3,6 @@ class Movable extends Drawable {
   speedY = 0;
   acceleration = 2.5;
   groundLevel = 140;
-  energy = 100;
 
   lookLeft = false;
   lastHit = 0;
@@ -57,7 +56,11 @@ class Movable extends Drawable {
   }
 
   isGrounded() {
-    return this.y >= this.groundLevel;
+    if (this instanceof Throwable) {
+      return true;
+    } else {
+      return this.y >= this.groundLevel;
+    }
   }
 
   draw(ctx) {}

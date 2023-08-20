@@ -1,4 +1,4 @@
-class MainUI extends Drawable {
+class HealthUI extends Drawable {
   percentage = 100;
 
   IMAGES_HEALTH_UI = [
@@ -10,19 +10,9 @@ class MainUI extends Drawable {
     "img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
   ];
 
-  IMAGES_COINS_UI = [
-    "img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png",
-    "img/7_statusbars/1_statusbar/1_statusbar_coin/green/20.png",
-    "img/7_statusbars/1_statusbar/1_statusbar_coin/green/40.png",
-    "img/7_statusbars/1_statusbar/1_statusbar_coin/green/60.png",
-    "img/7_statusbars/1_statusbar/1_statusbar_coin/green/80.png",
-    "img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png",
-  ];
-
   constructor(x, y, height, width) {
     super();
     this.loadImages(this.IMAGES_HEALTH_UI);
-    this.loadImages(this.IMAGES_COINS_UI);
     this.setPercentage(100);
     this.x = x;
     this.y = y;
