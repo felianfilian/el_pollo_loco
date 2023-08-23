@@ -7,7 +7,8 @@ class World {
   character = new Character(100, 80);
   throwable = [];
   healthUI = new HealthUI(20, 20, 60, 200);
-  coinhUI = new CoinUI(20, 80, 40, 40);
+  coinUI = new CoinUI(20, 80, 40, 40);
+  bottleUI = new BottleUI(18, 120, 50, 50);
   level = level01;
 
   sound = new Sound();
@@ -59,7 +60,8 @@ class World {
   drawMainUI() {
     this.ctx.translate(-this.camera_x, 0);
     this.addToCanvas(this.healthUI);
-    this.addToCanvas(this.coinhUI);
+    this.addToCanvas(this.coinUI);
+    this.addToCanvas(this.bottleUI);
 
     // show Energy
     this.ctx.font = "16px Arial";
@@ -72,6 +74,13 @@ class World {
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
     this.ctx.fillText(this.character.coins, 80, 108);
+
+    // show Bottles
+    this.ctx.font = "20px Arial";
+    this.ctx.fillStyle = "white";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("0", 80, 154);
+    //this.ctx.fillText(this.character.coins, 80, 108);
 
     this.ctx.translate(this.camera_x, 0);
   }
