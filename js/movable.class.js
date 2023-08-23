@@ -74,10 +74,10 @@ class Movable extends Drawable {
 
   getDamage(damage) {
     this.energy -= damage;
-
     if (this.energy <= 0) {
       this.energy = 0;
     } else {
+      this.world.sound.playSFX(4);
       this.lastHit = new Date().getTime();
     }
   }
@@ -90,5 +90,16 @@ class Movable extends Drawable {
 
   isDead() {
     return this.energy <= 0;
+  }
+
+  intervals = [];
+
+  setStopInterval(func, time) {
+    let id = setInterval(func, time);
+    this.intervals.push(id);
+  }
+
+  stopAllIntervals() {
+    this.intervals.forEach(clearInterval);
   }
 }

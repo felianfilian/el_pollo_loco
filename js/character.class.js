@@ -1,6 +1,8 @@
 class Character extends Movable {
   energy = 100;
   coins = 0;
+  bottles = 0;
+  maxBottles = 5;
 
   ANIM_IDLE = [
     "img/2_character_pepe/1_idle/idle/I-1.png",

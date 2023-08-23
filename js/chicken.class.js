@@ -17,13 +17,13 @@ class Chicken extends Movable {
   }
 
   movement() {
-    setInterval(() => {
+    this.setStopInterval(() => {
       this.moveLeft();
     }, 1000 / 40);
   }
 
   animate() {
-    setInterval(() => {
+    this.setStopInterval(() => {
       this.playAnimation(this.ANIM_WALK);
     }, 1000 / 10);
 

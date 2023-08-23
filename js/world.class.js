@@ -85,8 +85,11 @@ class World {
     this.ctx.font = "20px Arial";
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.fillText("0", 80, 154);
-    //this.ctx.fillText(this.character.coins, 80, 108);
+    this.ctx.fillText(
+      this.character.bottles + " / " + this.character.maxBottles,
+      94,
+      154
+    );
 
     this.ctx.translate(this.camera_x, 0);
   }
@@ -114,7 +117,7 @@ class World {
     );
 
     // draw collission frame
-    drawItem.drawFrame(this.ctx);
+    // drawItem.drawFrame(this.ctx, drawItem);
 
     if (drawItem.lookLeft) {
       this.flipImageBack(drawItem);
@@ -148,6 +151,15 @@ class World {
         this.character.coins++;
       }
     });
+    this.level.bottles.forEach((bottle, i) => {
+      if (this.character.isColliding(bottle)) {
+        if (this.character.bottles < this.character.maxBottles) {
+          this.level.bottles.splice(i, 1);
+          this.sound.playSFX(3);
+          this.character.bottles++;
+        }
+      }
+    });
   }
 
   txtEnergy() {
@@ -155,7 +167,8 @@ class World {
   }
 
   checkThrow() {
-    if (this.nextBottle) {
+    if (this.nextBottle && this.character.bottles > 0) {
+      this.character.bottles--;
       this.nextBottle = false;
       let bottle = new Throwable(
         this.character.x + 100,

@@ -8,6 +8,8 @@ class Sound {
       new Audio("audio/walk01.wav"),
       new Audio("audio/jump01.wav"),
       new Audio("audio/coin01.wav"),
+      new Audio("audio/bottle_sfx.mp3"),
+      new Audio("audio/hurt01.mp3"),
     ];
   }
 

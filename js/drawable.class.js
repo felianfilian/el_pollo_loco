@@ -27,7 +27,7 @@ class Drawable {
     });
   }
 
-  drawFrame(ctx) {
+  drawFrame(ctx, drawItem) {
     if (
       this instanceof Character ||
       this instanceof Chicken ||
@@ -44,10 +44,10 @@ class Drawable {
       ctx.lineWidth = "4";
       ctx.strokeStyle = "red";
       ctx.rect(
-        this.x + this.offset.left,
-        this.y + this.offset.top,
-        this.width - (this.offset.left + this.offset.right),
-        this.height - (this.offset.top + this.offset.bottom)
+        this.x + drawItem.offset.left,
+        this.y + drawItem.offset.top,
+        this.width - (drawItem.offset.left + drawItem.offset.right),
+        this.height - (drawItem.offset.top + drawItem.offset.bottom)
       );
       ctx.stroke();
     }
