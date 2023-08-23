@@ -32,6 +32,7 @@ class Drawable {
       this instanceof Character ||
       this instanceof Chicken ||
       this instanceof Coin ||
+      this instanceof Bottle ||
       this instanceof Endboss
     ) {
       ctx.beginPath();

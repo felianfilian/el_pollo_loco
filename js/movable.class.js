@@ -63,8 +63,6 @@ class Movable extends Drawable {
     }
   }
 
-  draw(ctx) {}
-
   isColliding(obj) {
     return (
       this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&

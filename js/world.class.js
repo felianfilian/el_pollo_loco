@@ -6,9 +6,13 @@ class World {
 
   character = new Character(100, 80);
   throwable = [];
+
+  // UI elements
   healthUI = new HealthUI(20, 20, 60, 200);
   coinUI = new CoinUI(20, 80, 40, 40);
   bottleUI = new BottleUI(18, 120, 50, 50);
+
+  // set level
   level = level01;
 
   sound = new Sound();
@@ -20,6 +24,7 @@ class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.createCoins();
+    this.createBottles();
     this.draw();
     this.setworld();
     this.run();
@@ -47,6 +52,7 @@ class World {
     this.addArrayToCanvas(this.level.enemies);
     this.addArrayToCanvas(this.throwable);
     this.addArrayToCanvas(this.level.coins);
+    this.addArrayToCanvas(this.level.bottles);
     this.drawMainUI();
 
     this.ctx.translate(-this.camera_x, 0);
@@ -174,6 +180,12 @@ class World {
   createCoins() {
     for (let i = 0; i < 10; i++) {
       this.level.coins.push(new Coin());
+    }
+  }
+
+  createBottles() {
+    for (let i = 0; i < 8; i++) {
+      this.level.bottles.push(new Bottle());
     }
   }
 }
