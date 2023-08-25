@@ -1,5 +1,5 @@
 class Character extends Movable {
-  energy = 100;
+  energy = 10;
   coins = 0;
   bottles = 0;
   maxBottles = 5;

@@ -14,7 +14,6 @@ let keyboard = new Keyboard();
 
 function init() {
   canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
 }
 
 window.addEventListener("keydown", (e) => {
@@ -60,4 +59,9 @@ function startBgMusic() {
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("canvas").style.display = "block";
+  world = new World(canvas, keyboard);
+}
+
+function showGameOver() {
+  document.getElementById("gameover-screen").style.display = "flex";
 }
