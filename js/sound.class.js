@@ -10,6 +10,7 @@ class Sound {
       new Audio("audio/coin01.wav"),
       new Audio("audio/bottle_sfx.mp3"),
       new Audio("audio/hurt01.mp3"),
+      new Audio("audio/glass_crash_01.mp3"),
     ];
   }
 

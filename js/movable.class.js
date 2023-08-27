@@ -45,21 +45,18 @@ class Movable extends Drawable {
 
   applyGravity() {
     setInterval(() => {
-      if (!this.isGrounded() || this.speedY > 0) {
+      if (this.aboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
-        if (this.y > this.groundLevel) {
-          this.y = this.groundLevel;
-        }
         this.speedY -= this.acceleration;
       }
     }, 1000 / 30);
   }
 
-  isGrounded() {
+  aboveGround() {
     if (this instanceof Throwable) {
       return true;
     } else {
-      return this.y >= this.groundLevel;
+      return this.y < this.groundLevel;
     }
   }
 
@@ -93,6 +90,7 @@ class Movable extends Drawable {
   isDead() {
     return this.energy <= 0;
   }
+  d;
 
   intervals = [];
 

@@ -1,5 +1,5 @@
 class Character extends Movable {
-  energy = 10;
+  energy = 100;
   coins = 0;
   bottles = 0;
   maxBottles = 5;
@@ -94,7 +94,7 @@ class Character extends Movable {
           this.moveLeft();
           this.lookLeft = true;
         }
-        if (this.world.keyboard.SPACE && this.isGrounded()) {
+        if (this.world.keyboard.SPACE && !this.aboveGround()) {
           super.jump();
           this.world.sound.playSFX(1);
         }
@@ -115,7 +115,7 @@ class Character extends Movable {
       } else {
         if (this.isHurt()) {
           this.playAnimation(this.ANIM_HURT);
-        } else if (!this.isGrounded()) {
+        } else if (this.aboveGround()) {
           this.playAnimation(this.ANIM_JUMP);
         } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
           this.playAnimation(this.ANIM_WALK);
