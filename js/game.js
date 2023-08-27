@@ -11,9 +11,13 @@ let canvas;
 let ctx;
 let world;
 let keyboard = new Keyboard();
+let gameoverScreen;
+let fullScreenActive = false;
 
 function init() {
   canvas = document.getElementById("canvas");
+  gameoverScreen = document.getElementById("gameover-screen");
+  world = new World(canvas, keyboard);
 }
 
 window.addEventListener("keydown", (e) => {
@@ -52,16 +56,25 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
+function fullscreen() {
+  let content = document.getElementById("content");
+  if (document.fullscreenElement === null) {
+    content.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
 function startBgMusic() {
   world.sound.startBgMusic();
 }
 
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
+  gameoverScreen.style.display = "none";
   document.getElementById("canvas").style.display = "block";
-  world = new World(canvas, keyboard);
 }
 
 function showGameOver() {
-  document.getElementById("gameover-screen").style.display = "flex";
+  gameoverScreen.style.display = "flex";
 }

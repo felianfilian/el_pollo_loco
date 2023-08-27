@@ -160,6 +160,24 @@ class World {
         }
       }
     });
+    this.throwable.forEach((bottle) => {
+      this.level.enemies.forEach((enemy) => {
+        this.bottleHitsEnemy(enemy, bottle);
+      });
+    });
+  }
+
+  bottleHitsEnemy(enemy, bottle) {
+    if (
+      enemy.isColliding(bottle) &&
+      bottle.energy > 0 &&
+      bottle.aboveGround()
+    ) {
+      console.log("enemy hit");
+      enemy.getDamage(100);
+      bottle.getDamage(100);
+      this.sound.playSFX(5);
+    }
   }
 
   txtEnergy() {

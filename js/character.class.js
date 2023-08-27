@@ -1,5 +1,5 @@
 class Character extends Movable {
-  energy = 100;
+  energy = 10;
   coins = 0;
   bottles = 0;
   maxBottles = 5;
@@ -95,7 +95,7 @@ class Character extends Movable {
           this.lookLeft = true;
         }
         if (this.world.keyboard.SPACE && !this.aboveGround()) {
-          super.jump();
+          super.jump(30);
           this.world.sound.playSFX(1);
         }
         if (this.world.keyboard.UP) {

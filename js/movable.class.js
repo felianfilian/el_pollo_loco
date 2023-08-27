@@ -22,8 +22,9 @@ class Movable extends Drawable {
     this.x -= this.speedX;
   }
 
-  jump() {
-    this.speedY = 30;
+  // how high should the character jump
+  jump(jumpForce) {
+    this.speedY = jumpForce;
   }
 
   playAnimation(images) {
@@ -90,7 +91,6 @@ class Movable extends Drawable {
   isDead() {
     return this.energy <= 0;
   }
-  d;
 
   intervals = [];
 
