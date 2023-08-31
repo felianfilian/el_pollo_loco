@@ -1,5 +1,5 @@
 class Character extends Movable {
-  energy = 10;
+  energy = 100;
   coins = 0;
   bottles = 0;
   maxBottles = 5;
@@ -55,7 +55,7 @@ class Character extends Movable {
   offset = {
     top: 120,
     right: 30,
-    bottom: 40,
+    bottom: 10,
     left: 30,
   };
 

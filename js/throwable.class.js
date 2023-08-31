@@ -1,4 +1,5 @@
 class Throwable extends Movable {
+  energy = 10;
   forceX = 10;
 
   ANIM_BOTTLE = [
@@ -45,9 +46,8 @@ class Throwable extends Movable {
   animateBottle() {
     setInterval(() => {
       this.playAnimation(this.ANIM_BOTTLE);
-      if (this.isHurt() || !this.aboveGround) {
+      if (!this.active || !this.aboveGround) {
         this.playAnimation(this.ANIM_BOTTLE_CRASH);
-        this.world.sound.playSFX(5);
       }
     }, 1000 / 10);
   }

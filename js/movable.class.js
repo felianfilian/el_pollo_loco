@@ -7,6 +7,8 @@ class Movable extends Drawable {
   lookLeft = false;
   lastHit = 0;
 
+  active = true;
+
   offset = {
     top: 0,
     right: 0,
@@ -70,7 +72,7 @@ class Movable extends Drawable {
     );
   }
 
-  getDamage(damage) {
+  playerDamage(damage) {
     this.energy -= damage;
     if (this.energy <= 0) {
       this.energy = 0;

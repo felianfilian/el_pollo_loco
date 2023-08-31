@@ -7,6 +7,8 @@ class World {
   character = new Character(100, 80);
   throwable = [];
 
+  showCollossions = false;
+
   // UI elements
   healthUI = new HealthUI(20, 20, 60, 200);
   coinUI = new CoinUI(20, 80, 40, 40);
@@ -31,6 +33,7 @@ class World {
     this.drawClouds();
   }
 
+  // setup update routine
   run() {
     setInterval(() => {
       this.update();
@@ -41,6 +44,7 @@ class World {
     this.checkCollissions();
   }
 
+  // draw elements on canvas
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -63,6 +67,7 @@ class World {
     });
   }
 
+  // draw UI elements
   drawMainUI() {
     this.ctx.translate(-this.camera_x, 0);
     this.addToCanvas(this.healthUI);
@@ -116,8 +121,9 @@ class World {
       drawItem.height
     );
 
-    // draw collission frame
-    // drawItem.drawFrame(this.ctx, drawItem);
+    if (this.showCollossions) {
+      drawItem.drawFrame(this.ctx, drawItem);
+    }
 
     if (drawItem.lookLeft) {
       this.flipImageBack(drawItem);
@@ -138,10 +144,21 @@ class World {
 
   checkCollissions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && !this.character.isHurt()) {
-        this.character.getDamage(5);
-        this.healthUI.setPercentage(this.character.energy);
-        this.txtEnergy();
+      if (
+        this.character.isColliding(enemy) &&
+        !this.character.isHurt() &&
+        enemy.active
+      ) {
+        if (this.character.aboveGround()) {
+          this.character.jump(20);
+          enemy.energy--;
+          enemy.active = false;
+          this.sound.playSFX(6);
+        } else {
+          this.character.playerDamage(5);
+          this.healthUI.setPercentage(this.character.energy);
+          this.txtEnergy();
+        }
       }
     });
     this.level.coins.forEach((coin, i) => {
@@ -160,24 +177,36 @@ class World {
         }
       }
     });
-    this.throwable.forEach((bottle) => {
-      this.level.enemies.forEach((enemy) => {
-        this.bottleHitsEnemy(enemy, bottle);
+    this.throwable.forEach((bottle, bottle_index) => {
+      this.level.enemies.forEach((enemy, enemy_index) => {
+        this.bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index);
       });
     });
   }
 
-  bottleHitsEnemy(enemy, bottle) {
+  bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index) {
     if (
       enemy.isColliding(bottle) &&
       bottle.energy > 0 &&
       bottle.aboveGround()
     ) {
-      console.log("enemy hit");
-      enemy.getDamage(100);
-      bottle.getDamage(100);
+      bottle.speedY = 0;
+      bottle.speedX = 0;
+      bottle.forceX = 5;
+      bottle.playAnimation(bottle.ANIM_BOTTLE_CRASH);
+      bottle.energy -= 100;
+      enemy.energy--;
+      bottle.active = false;
+      enemy.active = false;
       this.sound.playSFX(5);
+      this.destroyObject(this.throwable, bottle_index, 0.5);
     }
+  }
+
+  destroyObject(arrayObject, index, time) {
+    setTimeout(() => {
+      arrayObject.splice(index, 1);
+    }, 1000 * time);
   }
 
   txtEnergy() {

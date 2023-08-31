@@ -28,7 +28,7 @@
   </head>
   <body onload="init()">
     <h1>EL POLLO LOCO</h1>
-    <div class="content">
+    <div id="content" class="content">
       <div id="start-screen">
         <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
         <button class="btn-start" onclick="startGame()">Start</button>
@@ -37,10 +37,11 @@
         </div>
       </div>
 
-      <!-- <div class="hud">
+      <div id="hud">
         <button onclick="startBgMusic()">START BG MUSIC</button>
+        <button onclick="fullscreen()">FullScreen</button>
         <img src="" alt="" />
-      </div> -->
+      </div>
 
       <canvas id="canvas" width="720" height="480"> </canvas>
 
@@ -49,7 +50,7 @@
           src="img/9_intro_outro_screens/game_over/oh no you lost!.png"
           alt=""
         />
-        <button class="btn-start" onclick="startGame()">Start</button>
+        <button class="btn-start" onclick="restartGame()">Start</button>
       </div>
     </div>
   </body>

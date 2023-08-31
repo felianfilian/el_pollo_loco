@@ -17,7 +17,6 @@ let fullScreenActive = false;
 function init() {
   canvas = document.getElementById("canvas");
   gameoverScreen = document.getElementById("gameover-screen");
-  world = new World(canvas, keyboard);
 }
 
 window.addEventListener("keydown", (e) => {
@@ -71,8 +70,12 @@ function startBgMusic() {
 
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
-  gameoverScreen.style.display = "none";
   document.getElementById("canvas").style.display = "block";
+  world = new World(canvas, keyboard);
+}
+
+function restartGame() {
+  window.location.reload();
 }
 
 function showGameOver() {
