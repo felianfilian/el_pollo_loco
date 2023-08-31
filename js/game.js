@@ -64,13 +64,12 @@ function fullscreen() {
   }
 }
 
-function startBgMusic() {
-  world.sound.startBgMusic();
-}
-
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("canvas").style.display = "block";
+  document.getElementById("audio-trigger").classList.remove("d-none");
+  document.getElementById("info-trigger").classList.remove("d-none");
+  document.getElementById("start-tutorial").classList.add("d-none");
   world = new World(canvas, keyboard);
 }
 
@@ -80,4 +79,13 @@ function restartGame() {
 
 function showGameOver() {
   gameoverScreen.style.display = "flex";
+}
+
+function showInfo() {
+  let startTutorial = document.getElementById("start-tutorial");
+  if (startTutorial.classList.contains("d-none")) {
+    startTutorial.classList.remove("d-none");
+  } else {
+    startTutorial.classList.add("d-none");
+  }
 }

@@ -52,11 +52,12 @@ class World {
 
     this.addArrayToCanvas(this.level.backgrounds);
     this.addArrayToCanvas(this.level.clouds);
-    this.addToCanvas(this.character);
-    this.addArrayToCanvas(this.level.enemies);
-    this.addArrayToCanvas(this.throwable);
-    this.addArrayToCanvas(this.level.coins);
     this.addArrayToCanvas(this.level.bottles);
+    this.addArrayToCanvas(this.level.coins);
+    this.addArrayToCanvas(this.level.enemies);
+    this.addToCanvas(this.character);
+    this.addArrayToCanvas(this.throwable);
+
     this.drawMainUI();
 
     this.ctx.translate(-this.camera_x, 0);
@@ -154,6 +155,7 @@ class World {
           enemy.energy--;
           enemy.active = false;
           this.sound.playSFX(6);
+          this.sound.playSFX(7);
         } else {
           this.character.playerDamage(5);
           this.healthUI.setPercentage(this.character.energy);
@@ -181,26 +183,35 @@ class World {
       this.level.enemies.forEach((enemy, enemy_index) => {
         this.bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index);
       });
+      if (bottle.y > this.canvas.height - 140) {
+        this.destroyBottle(bottle);
+      }
     });
   }
 
   bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index) {
+    console.log(bottle.aboveGround());
     if (
       enemy.isColliding(bottle) &&
       bottle.energy > 0 &&
       bottle.aboveGround()
     ) {
-      bottle.speedY = 0;
-      bottle.speedX = 0;
-      bottle.forceX = 5;
-      bottle.playAnimation(bottle.ANIM_BOTTLE_CRASH);
-      bottle.energy -= 100;
+      this.destroyBottle(bottle, bottle_index);
       enemy.energy--;
-      bottle.active = false;
+
       enemy.active = false;
-      this.sound.playSFX(5);
-      this.destroyObject(this.throwable, bottle_index, 0.5);
     }
+  }
+
+  destroyBottle(bottle, bottle_index) {
+    bottle.speedY = 0;
+    bottle.speedX = 0;
+    bottle.forceX = 5;
+    bottle.playAnimation(bottle.ANIM_BOTTLE_CRASH);
+    bottle.energy -= 100;
+    bottle.active = false;
+    this.sound.playSFX(5);
+    this.destroyObject(this.throwable, bottle_index, 0.5);
   }
 
   destroyObject(arrayObject, index, time) {
@@ -248,4 +259,12 @@ class World {
       this.level.bottles.push(new Bottle());
     }
   }
+}
+
+async function startSound() {
+  await world.sound.startSound();
+}
+
+async function startBgMusic(index) {
+  await world.sound.startBgMusic(index);
 }
