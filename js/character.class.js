@@ -104,6 +104,16 @@ class Character extends Movable {
       }
 
       this.world.camera_x = -this.x + 100;
+
+      if (
+        this.x > this.world.endBossTrigger_x &&
+        this.world.level.enemies[0].active == false
+      ) {
+        console.log("BOSS");
+        this.world.level.enemies[0].active = true;
+        this.world.sound.startBgMusic(1);
+        document.getElementById("content").style.filter = "grayscale(50%)";
+      }
     }, 1000 / 30);
   }
 

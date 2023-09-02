@@ -9,6 +9,8 @@ class World {
 
   showCollossions = false;
 
+  endBossTrigger_x = 1800;
+
   // UI elements
   healthUI = new HealthUI(20, 20, 60, 200);
   coinUI = new CoinUI(20, 80, 40, 40);
@@ -183,14 +185,13 @@ class World {
       this.level.enemies.forEach((enemy, enemy_index) => {
         this.bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index);
       });
-      if (bottle.y > this.canvas.height - 140) {
-        this.destroyBottle(bottle);
-      }
+      // if (bottle.y > this.canvas.height - 140) {
+      //   this.destroyBottle(bottle);
+      // }
     });
   }
 
   bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index) {
-    console.log(bottle.aboveGround());
     if (
       enemy.isColliding(bottle) &&
       bottle.energy > 0 &&

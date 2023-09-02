@@ -2,8 +2,6 @@ class Throwable extends Movable {
   energy = 10;
   forceX = 10;
 
-  groundLevel = 300;
-
   ANIM_BOTTLE = [
     "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
     "img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",

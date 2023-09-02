@@ -3,8 +3,6 @@ class Endboss extends Movable {
   width = 250;
   x = 2200;
   y = 60;
-  endbossTriggerX = 2100;
-  active = false;
 
   ANIM_ALERT = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
@@ -52,6 +50,7 @@ class Endboss extends Movable {
     this.loadImages(this.ANIM_HURT);
     this.loadImages(this.ANIM_DEAD);
     this.animate();
+    this.active = false;
   }
 
   animate() {
