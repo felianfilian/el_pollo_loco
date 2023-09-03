@@ -18,6 +18,7 @@ class Sound {
       new Audio("audio/glass_crash_01.mp3"),
       new Audio("audio/chicken_01.mp3"),
       new Audio("audio/jump_hit.mp3"),
+      new Audio("audio/game_over_01.mp3"),
     ];
     this.startSound();
   }

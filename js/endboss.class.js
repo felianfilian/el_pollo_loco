@@ -3,6 +3,8 @@ class Endboss extends Movable {
   width = 250;
   x = 2200;
   y = 60;
+  speedX = 1;
+  energy = 4;
 
   ANIM_ALERT = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
@@ -30,10 +32,9 @@ class Endboss extends Movable {
   ];
 
   ANIM_DEAD = [
-    "img/4_enemie_boss_chicken/1_walk/G1.png",
-    "img/4_enemie_boss_chicken/1_walk/G2.png",
-    "img/4_enemie_boss_chicken/1_walk/G3.png",
-    "img/4_enemie_boss_chicken/1_walk/G4.png",
+    "img/4_enemie_boss_chicken/5_dead/G24.png",
+    "img/4_enemie_boss_chicken/5_dead/G25.png",
+    "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
   offset = {
@@ -49,16 +50,29 @@ class Endboss extends Movable {
     this.loadImages(this.ANIM_WALK);
     this.loadImages(this.ANIM_HURT);
     this.loadImages(this.ANIM_DEAD);
-    this.animate();
     this.active = false;
+    this.animate();
+  }
+
+  startMove() {
+    this.setStopInterval(() => {
+      this.moveLeft();
+    }, 1000 / 40);
   }
 
   animate() {
     setInterval(() => {
-      if (this.active) {
-        this.playAnimation(this.ANIM_WALK);
+      console.log(this.energy);
+      if (this.energy <= 0) {
+        this.playAnimation(this.ANIM_DEAD);
+        this.speedX = 0;
+        this.y += 40;
       } else {
-        this.playAnimation(this.ANIM_ALERT);
+        if (this.active) {
+          this.playAnimation(this.ANIM_WALK);
+        } else {
+          this.playAnimation(this.ANIM_ALERT);
+        }
       }
     }, 200);
   }

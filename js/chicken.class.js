@@ -9,9 +9,27 @@ class Chicken extends Movable {
 
   ANIM_DEAD = ["img/3_enemies_chicken/chicken_normal/2_dead/dead.png"];
 
-  constructor() {
-    super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+  ANIM_SMALL_WALK = [
+    "img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
+    "img/3_enemies_chicken/chicken_small/1_walk/2_w.png",
+    "img/3_enemies_chicken/chicken_small/1_walk/3_w.png",
+  ];
+
+  ANIM_SMALL_DEAD = ["img/3_enemies_chicken/chicken_small/2_dead/dead.png"];
+
+  constructor(type) {
+    if (type == 1) {
+      super().loadImage("img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
+      this.ANIM_WALK = this.ANIM_SMALL_WALK;
+      this.ANIM_DEAD = this.ANIM_SMALL_DEAD;
+      this.width = 50;
+      this.height = 50;
+      this.y = 390;
+    } else {
+      super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+    }
     this.loadImages(this.ANIM_WALK);
+
     this.x = 600 + Math.round(Math.random() * 800);
 
     this.speed = 0.2 + Math.random() * 0.8;

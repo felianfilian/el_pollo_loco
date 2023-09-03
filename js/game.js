@@ -19,6 +19,9 @@ function init() {
   gameoverScreen = document.getElementById("gameover-screen");
 }
 
+// get media query
+let x = window.matchMedia("(max-width: 720px) and (orientation: landscape)");
+
 window.addEventListener("keydown", (e) => {
   if (e.keyCode == 32) {
     keyboard.SPACE = true;
@@ -70,6 +73,9 @@ function startGame() {
   document.getElementById("audio-trigger").classList.remove("d-none");
   document.getElementById("info-trigger").classList.remove("d-none");
   document.getElementById("start-tutorial").classList.add("d-none");
+  if (x.matches) {
+    fullscreen();
+  }
   world = new World(canvas, keyboard);
 }
 

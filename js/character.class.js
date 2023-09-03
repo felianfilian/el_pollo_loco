@@ -1,5 +1,5 @@
 class Character extends Movable {
-  energy = 100;
+  energy = 20;
   coins = 0;
   bottles = 0;
   maxBottles = 5;
@@ -109,8 +109,8 @@ class Character extends Movable {
         this.x > this.world.endBossTrigger_x &&
         this.world.level.enemies[0].active == false
       ) {
-        console.log("BOSS");
         this.world.level.enemies[0].active = true;
+        this.world.level.enemies[0].startMove();
         this.world.sound.startBgMusic(1);
         document.getElementById("content").style.filter = "grayscale(50%)";
       }

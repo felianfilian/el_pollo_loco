@@ -9,7 +9,7 @@ class World {
 
   showCollossions = false;
 
-  endBossTrigger_x = 1800;
+  endBossTrigger_x = 1700;
 
   // UI elements
   healthUI = new HealthUI(20, 20, 60, 200);
@@ -185,9 +185,6 @@ class World {
       this.level.enemies.forEach((enemy, enemy_index) => {
         this.bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index);
       });
-      // if (bottle.y > this.canvas.height - 140) {
-      //   this.destroyBottle(bottle);
-      // }
     });
   }
 

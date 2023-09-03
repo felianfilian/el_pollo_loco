@@ -74,11 +74,13 @@ class Movable extends Drawable {
 
   playerDamage(damage) {
     this.energy -= damage;
-    if (this.energy <= 0) {
+    if (this.energy <= 0 && this.active) {
       this.energy = 0;
+      this.active = false;
       this.stopAllIntervals();
+      this.world.sound.playSFX(8);
       showGameOver();
-    } else {
+    } else if (this.energy > 0) {
       this.world.sound.playSFX(4);
       this.lastHit = new Date().getTime();
     }
