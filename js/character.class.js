@@ -112,7 +112,6 @@ class Character extends Movable {
         this.world.level.enemies[0].active = true;
         this.world.level.enemies[0].startMove();
         this.world.sound.startBgMusic(1);
-        document.getElementById("content").style.filter = "grayscale(50%)";
       }
     }, 1000 / 30);
   }

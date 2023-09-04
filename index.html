@@ -89,12 +89,20 @@
 
       <canvas id="canvas" width="720" height="480"> </canvas>
 
-      <div id="gameover-screen">
+      <div id="gameover-screen" class="game-overlay">
         <img
           src="./img/9_intro_outro_screens/game_over/oh no you lost!.png"
           alt=""
         />
-        <button class="btn-start" onclick="restartGame()">Start</button>
+        <button class="btn-start" onclick="restartGame()">Restart</button>
+      </div>
+
+      <div id="gamewin-screen" class="game-overlay">
+        <img
+          src="./img/9_intro_outro_screens/game_over/game over!.png"
+          alt=""
+        />
+        <button class="btn-start" onclick="restartGame()">Restart</button>
       </div>
 
       <div id="start-tutorial" class="start-tutorial">

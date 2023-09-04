@@ -122,7 +122,8 @@ canvas {
   border-radius: 16px;
 }
 
-#gameover-screen {
+.game-overlay {
+  overflow: hidden;
   position: absolute;
   top: 0;
 

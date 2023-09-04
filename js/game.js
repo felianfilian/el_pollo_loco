@@ -17,6 +17,7 @@ let fullScreenActive = false;
 function init() {
   canvas = document.getElementById("canvas");
   gameoverScreen = document.getElementById("gameover-screen");
+  gamewinScreen = document.getElementById("gamewin-screen");
 }
 
 // get media query
@@ -85,6 +86,10 @@ function restartGame() {
 
 function showGameOver() {
   gameoverScreen.style.display = "flex";
+}
+
+function showGameWin() {
+  gamewinScreen.style.display = "flex";
 }
 
 function showInfo() {

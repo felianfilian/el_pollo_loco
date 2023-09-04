@@ -8,6 +8,8 @@ class Sound {
     this.bg_music = [
       new Audio("audio/music/mexico01.mp3"),
       new Audio("audio/music/boss_music_01.mp3"),
+      new Audio("audio/game_over_01.mp3"),
+      new Audio("audio/game_win_01.mp3"),
     ];
     this.sfx_sounds = [
       new Audio("audio/walk01.wav"),
@@ -18,7 +20,7 @@ class Sound {
       new Audio("audio/glass_crash_01.mp3"),
       new Audio("audio/chicken_01.mp3"),
       new Audio("audio/jump_hit.mp3"),
-      new Audio("audio/game_over_01.mp3"),
+      new Audio("audio/el_pollo_death.mp3"),
     ];
     this.startSound();
   }
@@ -39,6 +41,11 @@ class Sound {
     this.stopBgMusic();
     this.bg_music[index].play();
     this.bg_music[index].loop = true;
+  }
+
+  startBgMusicOnce(index) {
+    this.stopBgMusic();
+    this.bg_music[index].play();
   }
 
   stopBgMusic() {

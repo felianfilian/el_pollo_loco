@@ -78,7 +78,7 @@ class Movable extends Drawable {
       this.energy = 0;
       this.active = false;
       this.stopAllIntervals();
-      this.world.sound.playSFX(8);
+      this.world.sound.startBgMusicOnce(2);
       showGameOver();
     } else if (this.energy > 0) {
       this.world.sound.playSFX(4);

@@ -196,8 +196,15 @@ class World {
     ) {
       this.destroyBottle(bottle, bottle_index);
       enemy.energy--;
-
-      enemy.active = false;
+      if (enemy_index == 0 && enemy.energy <= 0) {
+        this.sound.playSFX(8);
+        setTimeout(() => {
+          showGameWin();
+          this.sound.startBgMusicOnce(3);
+        }, 1000);
+      } else if (enemy.energy <= 0) {
+        enemy.active = false;
+      }
     }
   }
 
