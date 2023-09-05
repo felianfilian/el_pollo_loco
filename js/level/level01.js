@@ -44,6 +44,8 @@ const level01 = new Level(
       -10
     ),
     new Background("img/5_background/layers/1_first_layer/2.png", 719 * 3, 0),
+    new Background("img/rock.svg", -100, 300, 150, 150),
+    new Background("img/rock.svg", 2300, 300, 150, 150),
   ],
   [],
   []

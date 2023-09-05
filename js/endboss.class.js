@@ -1,10 +1,11 @@
 class Endboss extends Movable {
   height = 400;
   width = 250;
-  x = 2200;
+  x = 2100;
   y = 60;
   speedX = 1.5;
-  energy = 4;
+  energy = 6;
+  maxEnergy = 6;
   hitted = false;
 
   ANIM_ALERT = [
@@ -56,7 +57,11 @@ class Endboss extends Movable {
 
   startMove() {
     this.setStopInterval(() => {
-      this.moveLeft();
+      if (this.lookLeft) {
+        this.moveRight();
+      } else {
+        this.moveLeft();
+      }
     }, 1000 / 40);
   }
 
@@ -71,6 +76,7 @@ class Endboss extends Movable {
           if (this.hitted) {
             this.playAnimation(this.ANIM_HURT);
           } else {
+            this.turnEndboss();
             this.playAnimation(this.ANIM_WALK);
           }
         } else {
@@ -78,6 +84,14 @@ class Endboss extends Movable {
         }
       }
     }, 200);
+  }
+
+  turnEndboss() {
+    if (world.character.x > this.x) {
+      this.lookLeft = true;
+    } else {
+      this.lookLeft = false;
+    }
   }
 
   getsHit() {

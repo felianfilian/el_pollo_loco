@@ -1,5 +1,6 @@
 class Character extends Movable {
   energy = 100;
+  maxEnergy = this.energy;
   coins = 0;
   bottles = 0;
   maxBottles = 5;
@@ -95,7 +96,11 @@ class Character extends Movable {
             this.moveLeft();
             this.lookLeft = true;
           }
-          if (this.world.keyboard.SPACE && !this.aboveGround()) {
+          if (
+            this.world.keyboard.SPACE &&
+            !this.aboveGround() &&
+            !this.isHurt()
+          ) {
             super.jump(30);
             this.world.sound.playSFX(1);
           }
@@ -103,19 +108,21 @@ class Character extends Movable {
             this.world.checkThrow();
           }
         }
-
         this.world.camera_x = -this.x + 100;
-
-        if (
-          this.x > this.world.endBossTrigger_x &&
-          this.world.level.enemies[0].active == false
-        ) {
-          this.world.level.enemies[0].active = true;
-          this.world.level.enemies[0].startMove();
-          this.world.sound.startBgMusic(1);
-        }
+        this.checkBossTrigger();
       }
     }, 1000 / 30);
+  }
+
+  checkBossTrigger() {
+    if (
+      this.x > this.world.endBossTrigger_x &&
+      this.world.level.enemies[0].active == false
+    ) {
+      this.world.level.enemies[0].active = true;
+      this.world.level.enemies[0].startMove();
+      this.world.sound.startBgMusic(1);
+    }
   }
 
   animate() {

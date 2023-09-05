@@ -27,16 +27,29 @@ function init() {
   }
 }
 
-// get media query
-let x = window.matchMedia("(max-width: 720px) and (orientation: landscape)");
+/**
+ * toggle between fullscreen and back
+ */
 
 function fullscreen() {
+  if (fullScreenActive) {
+    fullScreenActive = false;
+    exitFullscreen();
+  } else {
+    fullScreenActive = true;
+    goToFullScreen();
+  }
+}
+
+/**
+ * set game window to fullscreen
+ */
+
+function goToFullScreen() {
   let elem = document.body;
   let content = document.getElementById("content");
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
-    content.style.width = "100%";
-    content.style.height = "100%";
   } else if (elem.webkitRequestFullscreen) {
     /* Safari */
     elem.webkitRequestFullscreen();
@@ -44,7 +57,23 @@ function fullscreen() {
     /* IE11 */
     elem.msRequestFullscreen();
   }
+  content.classList.add("fullscreen");
+  document.getElementById("game-title").classList.add("d-none");
 }
+
+function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+  content.classList.remove("fullscreen");
+  document.getElementById("game-title").classList.remove("d-none");
+}
+
+/**
+ * Start Desktop Game
+ */
 
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
@@ -52,18 +81,22 @@ function startGame() {
   document.getElementById("audio-trigger").classList.remove("d-none");
   document.getElementById("info-trigger").classList.remove("d-none");
   document.getElementById("start-tutorial").classList.add("d-none");
-  checkMobileHud();
-  if (x.matches) {
-    fullscreen();
-  }
   world = new World(canvas, keyboard);
 }
 
-function checkMobileHud() {
-  if (window.innerWidth < 720) {
-    document.getElementById("hud-mobile-left").classList.remove("d-none");
-    document.getElementById("hud-mobile-right").classList.remove("d-none");
-  }
+/**
+ * start mobile game
+ */
+
+function startMobileGame() {
+  document.getElementById("mobile-start-screen").style.display = "none";
+  document.getElementById("canvas").style.display = "block";
+  document.getElementById("audio-trigger").classList.remove("d-none");
+  document.getElementById("start-tutorial").classList.add("d-none");
+  document.getElementById("hud-mobile-left").classList.remove("d-none");
+  document.getElementById("hud-mobile-right").classList.remove("d-none");
+  fullscreen();
+  world = new World(canvas, keyboard);
 }
 
 function restartGame() {

@@ -25,6 +25,11 @@ class Sound {
     this.startSound();
   }
 
+  /**
+   * mute button logic
+   * switches all the sound on and off on click
+   */
+
   startSound() {
     if (!this.active) {
       this.active = true;
@@ -37,22 +42,45 @@ class Sound {
     }
   }
 
+  /**
+   * start and loop background Music
+   * @param index index of the music clip
+   */
+
   startBgMusic(index) {
-    this.stopBgMusic();
-    this.bg_music[index].play();
-    this.bg_music[index].loop = true;
+    if (this.active) {
+      this.stopBgMusic();
+      this.bg_music[index].play();
+      this.bg_music[index].loop = true;
+    }
   }
 
+  /**
+   *  Play music just one time
+   * @param index index of the music clip
+   */
+
   startBgMusicOnce(index) {
-    this.stopBgMusic();
-    this.bg_music[index].play();
+    if (this.active) {
+      this.stopBgMusic();
+      this.bg_music[index].play();
+    }
   }
+
+  /**
+   * stop all background music clips
+   */
 
   stopBgMusic() {
     this.bg_music.forEach((title) => {
       title.pause();
     });
   }
+
+  /**
+   * play sound effect
+   * @param index index of the music clip
+   */
 
   playSFX(index) {
     if (this.active) {

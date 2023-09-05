@@ -32,6 +32,12 @@ class Throwable extends Movable {
     this.throw(this.x, this.y);
   }
 
+  /**
+   * bottle thros action starting on x an y
+   * @param x
+   * @param y
+   */
+
   throw(x, y) {
     this.x = x;
     this.y = y;
