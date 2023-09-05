@@ -26,6 +26,10 @@ class HealthUI extends Drawable {
     this.img = this.imageCache[path];
   }
 
+  /**
+   * set ui image filled with calculated percent
+   */
+
   resolveImageIndex() {
     if (this.percentage == 100) {
       return 5;

@@ -61,6 +61,10 @@ function goToFullScreen() {
   document.getElementById("game-title").classList.add("d-none");
 }
 
+/**
+ * exit fullscreen mode
+ */
+
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -110,6 +114,10 @@ function showGameOver() {
 function showGameWin() {
   gamewinScreen.style.display = "flex";
 }
+
+/**
+ * show info line for game tutorial
+ */
 
 function showInfo() {
   let startTutorial = document.getElementById("start-tutorial");

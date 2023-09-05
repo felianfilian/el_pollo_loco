@@ -27,6 +27,12 @@ class Drawable {
     });
   }
 
+  /**
+   * draw collission frame for debugging
+   * @param ctx
+   * @param drawItem
+   */
+
   drawFrame(ctx, drawItem) {
     if (
       this instanceof Character ||

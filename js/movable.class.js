@@ -29,6 +29,11 @@ class Movable extends Drawable {
     this.speedY = jumpForce;
   }
 
+  /**
+   * play animation loop
+   * @param images array
+   */
+
   playAnimation(images) {
     if (this.currentImage >= images.length) {
       this.currentImage = 0;
@@ -38,6 +43,11 @@ class Movable extends Drawable {
     this.currentImage++;
   }
 
+  /**
+   * play animation just once
+   * @param images array
+   */
+
   playAnimationOnce(images) {
     if (this.deathImage < images.length - 1) {
       let path = images[this.deathImage];
@@ -45,6 +55,10 @@ class Movable extends Drawable {
       this.deathImage++;
     }
   }
+
+  /**
+   * add gravity over time
+   */
 
   applyGravity() {
     setInterval(() => {
@@ -55,6 +69,11 @@ class Movable extends Drawable {
     }, 1000 / 30);
   }
 
+  /**
+   * check if above ground
+   * @returns true or false
+   */
+
   aboveGround() {
     if (this instanceof Throwable) {
       return true;
@@ -62,6 +81,12 @@ class Movable extends Drawable {
       return this.y < this.groundLevel;
     }
   }
+
+  /**
+   * check if colliding with other object
+   * @param obj other object
+   * @returns true or false
+   */
 
   isColliding(obj) {
     return (
@@ -71,6 +96,11 @@ class Movable extends Drawable {
       this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom
     );
   }
+
+  /**
+   * player gets damage
+   * @param damage number
+   */
 
   playerDamage(damage) {
     this.energy -= damage;
@@ -87,6 +117,11 @@ class Movable extends Drawable {
     }
   }
 
+  /**
+   * character is hitted quite before
+   * @returns true or false
+   */
+
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
@@ -96,6 +131,13 @@ class Movable extends Drawable {
   isDead() {
     return this.energy <= 0;
   }
+
+  /**
+   * interval handling
+   * @param func interval function
+   * @param time interval time
+   * @param id id of the created interval
+   */
 
   intervals = [];
 

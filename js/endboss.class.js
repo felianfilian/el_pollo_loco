@@ -55,6 +55,10 @@ class Endboss extends Movable {
     this.animate();
   }
 
+  /**
+   * boss movement after trigger is reached by character
+   */
+
   startMove() {
     this.setStopInterval(() => {
       if (this.lookLeft) {
@@ -86,6 +90,10 @@ class Endboss extends Movable {
     }, 200);
   }
 
+  /**
+   * turn endboss to left or right
+   */
+
   turnEndboss() {
     if (world.character.x > this.x) {
       this.lookLeft = true;
@@ -93,6 +101,10 @@ class Endboss extends Movable {
       this.lookLeft = false;
     }
   }
+
+  /**
+   * endboss get damaged
+   */
 
   getsHit() {
     this.hitted = true;

@@ -15,6 +15,10 @@ class Keyboard {
     this.btnPressEvents();
   }
 
+  /**
+   * controls for mobile devices
+   */
+
   btnPressEvents() {
     const btnLeft = document.getElementById("btn-left");
     const btnRight = document.getElementById("btn-right");
@@ -55,6 +59,10 @@ class Keyboard {
       this.UP = false;
     });
   }
+
+  /**
+   * controls for keyboard input
+   */
 
   keyPressEvents() {
     window.addEventListener("keydown", (e) => {
