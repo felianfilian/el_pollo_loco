@@ -1,6 +1,7 @@
 class World {
   ctx;
   canvas;
+  gameActive;
   keyboard;
   camera_x = -100;
 
@@ -24,6 +25,7 @@ class World {
   nextBottle = true;
 
   constructor(canvas, keyboard) {
+    this.gameActive = true;
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -43,7 +45,9 @@ class World {
   }
 
   update() {
-    this.checkCollissions();
+    if (this.gameActive) {
+      this.checkCollissions();
+    }
   }
 
   // draw elements on canvas
@@ -199,11 +203,18 @@ class World {
       if (enemy_index == 0 && enemy.energy <= 0) {
         this.sound.playSFX(8);
         setTimeout(() => {
+          this.gameActive = false;
           showGameWin();
           this.sound.startBgMusicOnce(3);
         }, 1000);
       } else if (enemy.energy <= 0) {
         enemy.active = false;
+      } else {
+        this.sound.playSFX(6);
+        if (enemy_index == 0) {
+          enemy.getsHit();
+          enemy.speedX *= 1.3;
+        }
       }
     }
   }

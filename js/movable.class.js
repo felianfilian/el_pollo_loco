@@ -75,6 +75,7 @@ class Movable extends Drawable {
   playerDamage(damage) {
     this.energy -= damage;
     if (this.energy <= 0 && this.active) {
+      this.world.gameActive = false;
       this.energy = 0;
       this.active = false;
       this.stopAllIntervals();

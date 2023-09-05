@@ -6,28 +6,9 @@
     <title>El Pollo Loco Version 1.0</title>
     <link rel="icon" href="#" />
     <link rel="stylesheet" href="style.css" />
-    <script src="./js/drawable.class.js"></script>
-    <script src="./js/healthui.class.js"></script>
-    <script src="./js/coinui.class.js"></script>
-    <script src="./js/bottleui.class.js"></script>
-    <script src="./js/world.class.js"></script>
-    <script src="./js/movable.class.js"></script>
-    <script src="./js/sound.class.js"></script>
-    <script src="./js/character.class.js"></script>
-    <script src="./js/throwable.class.js"></script>
-    <script src="./js/coin.class.js"></script>
-    <script src="./js/bottle.class.js"></script>
-    <script src="./js/chicken.class.js"></script>
-    <script src="./js/cloud.class.js"></script>
-    <script src="./js/background.class.js"></script>
-    <script src="./js/level.class.js"></script>
-    <script src="./js/endboss.class.js"></script>
-    <script src="./js/level/level01.js"></script>
-    <script src="./js/keyboard.class.js"></script>
-    <script src="./js/game.js"></script>
   </head>
   <body onload="init()">
-    <h1>EL POLLO LOCO</h1>
+    <h1 id="game-title">EL POLLO LOCO</h1>
     <div id="content" class="content">
       <div id="start-screen">
         <img src="./img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
@@ -50,6 +31,7 @@
           onclick="startSound()"
         />
         <img
+          id="btn-fullscreen"
           src="./icons/fullscreen-48.png"
           alt="Fullscreen"
           class="btn-icon"
@@ -109,5 +91,25 @@
         Steuerung: A und D = Bewegen, SPACE = Springen, W = Werfen
       </div>
     </div>
+
+    <script src="./js/drawable.class.js"></script>
+    <script src="./js/healthui.class.js"></script>
+    <script src="./js/coinui.class.js"></script>
+    <script src="./js/bottleui.class.js"></script>
+    <script src="./js/world.class.js"></script>
+    <script src="./js/movable.class.js"></script>
+    <script src="./js/sound.class.js"></script>
+    <script src="./js/character.class.js"></script>
+    <script src="./js/throwable.class.js"></script>
+    <script src="./js/coin.class.js"></script>
+    <script src="./js/bottle.class.js"></script>
+    <script src="./js/chicken.class.js"></script>
+    <script src="./js/cloud.class.js"></script>
+    <script src="./js/background.class.js"></script>
+    <script src="./js/level.class.js"></script>
+    <script src="./js/endboss.class.js"></script>
+    <script src="./js/level/level01.js"></script>
+    <script src="./js/keyboard.class.js"></script>
+    <script src="./js/game.js"></script>
   </body>
 </html>

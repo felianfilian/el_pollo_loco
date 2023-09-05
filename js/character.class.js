@@ -1,5 +1,5 @@
 class Character extends Movable {
-  energy = 20;
+  energy = 100;
   coins = 0;
   bottles = 0;
   maxBottles = 5;
@@ -82,55 +82,59 @@ class Character extends Movable {
 
   movement() {
     setInterval(() => {
-      if (!this.isDead()) {
+      if (this.world.gameActive) {
+        if (!this.isDead()) {
+          if (
+            this.world.keyboard.RIGHT &&
+            this.x < this.world.level.level_end_x
+          ) {
+            this.moveRight();
+            this.lookLeft = false;
+          }
+          if (this.world.keyboard.LEFT && this.x > 0) {
+            this.moveLeft();
+            this.lookLeft = true;
+          }
+          if (this.world.keyboard.SPACE && !this.aboveGround()) {
+            super.jump(30);
+            this.world.sound.playSFX(1);
+          }
+          if (this.world.keyboard.UP) {
+            this.world.checkThrow();
+          }
+        }
+
+        this.world.camera_x = -this.x + 100;
+
         if (
-          this.world.keyboard.RIGHT &&
-          this.x < this.world.level.level_end_x
+          this.x > this.world.endBossTrigger_x &&
+          this.world.level.enemies[0].active == false
         ) {
-          this.moveRight();
-          this.lookLeft = false;
+          this.world.level.enemies[0].active = true;
+          this.world.level.enemies[0].startMove();
+          this.world.sound.startBgMusic(1);
         }
-        if (this.world.keyboard.LEFT && this.x > 0) {
-          this.moveLeft();
-          this.lookLeft = true;
-        }
-        if (this.world.keyboard.SPACE && !this.aboveGround()) {
-          super.jump(30);
-          this.world.sound.playSFX(1);
-        }
-        if (this.world.keyboard.UP) {
-          this.world.checkThrow();
-        }
-      }
-
-      this.world.camera_x = -this.x + 100;
-
-      if (
-        this.x > this.world.endBossTrigger_x &&
-        this.world.level.enemies[0].active == false
-      ) {
-        this.world.level.enemies[0].active = true;
-        this.world.level.enemies[0].startMove();
-        this.world.sound.startBgMusic(1);
       }
     }, 1000 / 30);
   }
 
   animate() {
     setInterval(() => {
-      this.world.sound.pauseSFX(0);
-      if (this.isDead()) {
-        this.playAnimationOnce(this.ANIM_DEAD);
-      } else {
-        if (this.isHurt()) {
-          this.playAnimation(this.ANIM_HURT);
-        } else if (this.aboveGround()) {
-          this.playAnimation(this.ANIM_JUMP);
-        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          this.playAnimation(this.ANIM_WALK);
-          this.world.sound.playSFX(0);
+      if (this.world.gameActive) {
+        this.world.sound.pauseSFX(0);
+        if (this.isDead()) {
+          this.playAnimationOnce(this.ANIM_DEAD);
         } else {
-          this.playAnimation(this.ANIM_IDLE);
+          if (this.isHurt()) {
+            this.playAnimation(this.ANIM_HURT);
+          } else if (this.aboveGround()) {
+            this.playAnimation(this.ANIM_JUMP);
+          } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.ANIM_WALK);
+            this.world.sound.playSFX(0);
+          } else {
+            this.playAnimation(this.ANIM_IDLE);
+          }
         }
       }
     }, 1000 / 10);

@@ -1,22 +1,60 @@
 class Keyboard {
-  LEFT = false;
-  UP = false;
-  RIGHT = false;
-  DOWN = false;
-  SPACE = false;
+  LEFT;
+  UP;
+  RIGHT;
+  DOWN;
+  SPACE;
 
   constructor() {
+    this.LEFT = false;
+    this.UP = false;
+    this.RIGHT = false;
+    this.DOWN = false;
+    this.SPACE = false;
     this.keyPressEvents();
-    // this.btnPressEvents();
+    this.btnPressEvents();
   }
 
-  // btnPressEvents() {
-  //   document.getElementById("btn-left").addEventListener("touchstart", (e) => {
-  //     e.preventDefault();
-  //     console.log("left pressed");
-  //     this.LEFT = true;
-  //   });
-  // }
+  btnPressEvents() {
+    const btnLeft = document.getElementById("btn-left");
+    const btnRight = document.getElementById("btn-right");
+    const btnJump = document.getElementById("btn-jump");
+    const btnThrow = document.getElementById("btn-throw");
+
+    btnLeft.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.LEFT = true;
+    });
+    btnRight.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.RIGHT = true;
+    });
+    btnJump.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.SPACE = true;
+    });
+    btnThrow.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.UP = true;
+    });
+
+    btnLeft.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.LEFT = false;
+    });
+    btnRight.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.RIGHT = false;
+    });
+    btnJump.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.SPACE = false;
+    });
+    btnThrow.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.UP = false;
+    });
+  }
 
   keyPressEvents() {
     window.addEventListener("keydown", (e) => {
@@ -56,21 +94,3 @@ class Keyboard {
     });
   }
 }
-
-// window.addEventListener("tochstart", (e) => {
-//   if (e.keyCode == 32) {
-//     SPACE = true;
-//   }
-//   if (e.keyCode == 37 || e.keyCode == 65) {
-//     LEFT = true;
-//   }
-//   if (e.keyCode == 38 || e.keyCode == 87) {
-//     UP = true;
-//   }
-//   if (e.keyCode == 39 || e.keyCode == 68) {
-//     RIGHT = true;
-//   }
-//   if (e.keyCode == 40 || e.keyCode == 83) {
-//     DOWN = true;
-//   }
-// });

@@ -3,8 +3,9 @@ class Endboss extends Movable {
   width = 250;
   x = 2200;
   y = 60;
-  speedX = 1;
+  speedX = 1.5;
   energy = 4;
+  hitted = false;
 
   ANIM_ALERT = [
     "img/4_enemie_boss_chicken/2_alert/G5.png",
@@ -25,10 +26,9 @@ class Endboss extends Movable {
   ];
 
   ANIM_HURT = [
-    "img/4_enemie_boss_chicken/1_walk/G1.png",
-    "img/4_enemie_boss_chicken/1_walk/G2.png",
-    "img/4_enemie_boss_chicken/1_walk/G3.png",
-    "img/4_enemie_boss_chicken/1_walk/G4.png",
+    "img/4_enemie_boss_chicken/4_hurt/G21.png",
+    "img/4_enemie_boss_chicken/4_hurt/G22.png",
+    "img/4_enemie_boss_chicken/4_hurt/G23.png",
   ];
 
   ANIM_DEAD = [
@@ -62,18 +62,29 @@ class Endboss extends Movable {
 
   animate() {
     setInterval(() => {
-      console.log(this.energy);
       if (this.energy <= 0) {
         this.playAnimation(this.ANIM_DEAD);
         this.speedX = 0;
         this.y += 40;
       } else {
         if (this.active) {
-          this.playAnimation(this.ANIM_WALK);
+          if (this.hitted) {
+            this.playAnimation(this.ANIM_HURT);
+          } else {
+            this.playAnimation(this.ANIM_WALK);
+          }
         } else {
           this.playAnimation(this.ANIM_ALERT);
         }
       }
     }, 200);
+  }
+
+  getsHit() {
+    this.hitted = true;
+
+    setTimeout(() => {
+      this.hitted = false;
+    }, 800);
   }
 }
