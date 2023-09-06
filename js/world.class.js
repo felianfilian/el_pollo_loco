@@ -43,7 +43,6 @@ class World {
    * basic game routine
    * update() loop
    */
-
   run() {
     setInterval(() => {
       this.update();
@@ -59,7 +58,6 @@ class World {
   /**
    * draw elements on canvas
    */
-
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -86,7 +84,6 @@ class World {
   /**
    * draw UI elements
    */
-
   drawMainUI() {
     this.ctx.translate(-this.camera_x, 0);
     this.addToCanvas(this.healthUI);
@@ -109,6 +106,13 @@ class World {
     this.ctx.translate(this.camera_x, 0);
   }
 
+  /**
+   * show text on the defined position
+   * @param hudText text to show
+   * @param {*} x text position x
+   * @param {*} y text position y
+   * @param {*} font font-size and font-family
+   */
   showHUDtext(hudText, x, y, font) {
     this.ctx.font = font;
     this.ctx.fillStyle = "white";
@@ -124,7 +128,6 @@ class World {
    * draw items to the canvas
    * @param {*} drawItems
    */
-
   addArrayToCanvas(drawItems) {
     drawItems.forEach((drawItem) => {
       this.addToCanvas(drawItem);
@@ -135,7 +138,6 @@ class World {
    * show images on the canvas
    * @param drawItem image to draw
    */
-
   addToCanvas(drawItem) {
     if (drawItem.lookLeft) {
       this.flipImage(drawItem);
@@ -161,7 +163,6 @@ class World {
    * flip image to change directioen to left or right
    * @param {*} drawItem - the imge to flip
    */
-
   flipImage(drawItem) {
     this.ctx.save();
     this.ctx.translate(drawItem.width, 0);
@@ -178,7 +179,6 @@ class World {
    * Collission check routine
    * collission elements: character, enemies, coins, bottles
    */
-
   checkCollissions() {
     this.level.enemies.forEach((enemy) => {
       if (
@@ -212,7 +212,6 @@ class World {
    * enemy and character are colliding
    * @param enemy which enemy to collide with
    */
-
   characterEnemyCollission(enemy) {
     if (this.character.aboveGround() && this.character.speedY < 0) {
       this.character.jump(20);
@@ -233,7 +232,6 @@ class World {
    * add bottle to inventory
    * @param bottle_index index of the uncollected bottle in the level.bottles array
    */
-
   collectBottle(bottle_index) {
     if (this.character.bottles < this.character.maxBottles) {
       this.level.bottles.splice(bottle_index, 1);
@@ -249,7 +247,6 @@ class World {
    * @param enemy_index actual enemy index in array
    * @param bottle_index actual bottle index in array
    */
-
   bottleHitsEnemy(enemy, bottle, enemy_index, bottle_index) {
     if (
       enemy.isColliding(bottle) &&
@@ -271,9 +268,9 @@ class World {
    * special function only if boss is hitted
    * @param enemy boss enemy
    */
-
   BottleHitsBoss(enemy) {
     if (enemy.energy <= 0) {
+      this.endbossUI.setPercentage(0);
       this.sound.playSFX(8);
       setTimeout(() => {
         this.gameActive = false;
@@ -281,6 +278,7 @@ class World {
         this.sound.startBgMusicOnce(3);
       }, 1000);
     } else {
+      console.log(Math.round((enemy.energy / enemy.maxEnergy) * 100));
       this.sound.playSFX(6);
       enemy.getsHit();
       this.endbossUI.setPercentage(
@@ -295,7 +293,6 @@ class World {
    * @param bottle bottle element
    * @param bottle_index index of bottle in the bottles array
    */
-
   destroyBottle(bottle, bottle_index) {
     bottle.speedY = 0;
     bottle.speedX = 0;
@@ -313,7 +310,6 @@ class World {
    * @param index index of the element in the array
    * @param time delay time for destroy
    */
-
   destroyObject(arrayObject, index, time) {
     setTimeout(() => {
       arrayObject.splice(index, 1);
@@ -328,7 +324,6 @@ class World {
    * check if throwing is possible
    * maybe not enough bottles
    */
-
   checkThrow() {
     if (this.nextBottle && this.character.bottles > 0) {
       this.character.bottles--;
@@ -348,7 +343,6 @@ class World {
   /**
    * create clouds with an interval
    */
-
   drawClouds() {
     setInterval(() => {
       this.level.clouds.push(
@@ -360,7 +354,6 @@ class World {
   /**
    * create collectibles
    */
-
   createCoins() {
     for (let i = 0; i < 10; i++) {
       this.level.coins.push(new Coin());
@@ -377,7 +370,6 @@ class World {
 /**
  * start music and sound
  */
-
 async function startSound() {
   await world.sound.startSound();
 }

@@ -84,7 +84,6 @@ class Character extends Movable {
   /**
    * move character on input triggers
    */
-
   movement() {
     setInterval(() => {
       if (this.world.gameActive) {
@@ -121,7 +120,6 @@ class Character extends Movable {
   /**
    * check if boss is reached
    */
-
   checkBossTrigger() {
     if (
       this.x > this.world.endBossTrigger_x &&
@@ -136,7 +134,6 @@ class Character extends Movable {
   /**
    * animate character movement
    */
-
   animate() {
     setInterval(() => {
       if (this.world.gameActive) {

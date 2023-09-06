@@ -18,7 +18,6 @@ class Drawable {
    *
    * @param (Array) arr = ['img/img01.jpg','img/img01.jpg', ...]
    */
-
   loadImages(arr) {
     arr.forEach((path) => {
       let img = new Image();
@@ -29,10 +28,9 @@ class Drawable {
 
   /**
    * draw collission frame for debugging
-   * @param ctx
-   * @param drawItem
+   * @param ctx canvas object
+   * @param drawItem image to draw
    */
-
   drawFrame(ctx, drawItem) {
     if (
       this instanceof Character ||

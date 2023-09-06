@@ -30,7 +30,6 @@ function init() {
 /**
  * toggle between fullscreen and back
  */
-
 function fullscreen() {
   if (fullScreenActive) {
     fullScreenActive = false;
@@ -44,7 +43,6 @@ function fullscreen() {
 /**
  * set game window to fullscreen
  */
-
 function goToFullScreen() {
   let elem = document.body;
   let content = document.getElementById("content");
@@ -64,7 +62,6 @@ function goToFullScreen() {
 /**
  * exit fullscreen mode
  */
-
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -78,7 +75,6 @@ function exitFullscreen() {
 /**
  * Start Desktop Game
  */
-
 function startGame() {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("canvas").style.display = "block";
@@ -91,7 +87,6 @@ function startGame() {
 /**
  * start mobile game
  */
-
 function startMobileGame() {
   document.getElementById("mobile-start-screen").style.display = "none";
   document.getElementById("canvas").style.display = "block";
@@ -118,7 +113,6 @@ function showGameWin() {
 /**
  * show info line for game tutorial
  */
-
 function showInfo() {
   let startTutorial = document.getElementById("start-tutorial");
   if (startTutorial.classList.contains("d-none")) {

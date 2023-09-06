@@ -18,7 +18,6 @@ class Keyboard {
   /**
    * controls for mobile devices
    */
-
   btnPressEvents() {
     const btnLeft = document.getElementById("btn-left");
     const btnRight = document.getElementById("btn-right");
@@ -63,7 +62,6 @@ class Keyboard {
   /**
    * controls for keyboard input
    */
-
   keyPressEvents() {
     window.addEventListener("keydown", (e) => {
       if (e.keyCode == 32) {

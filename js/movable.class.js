@@ -16,10 +16,16 @@ class Movable extends Drawable {
     left: 0,
   };
 
+  /**
+   * move object right by speedX
+   */
   moveRight() {
     this.x += this.speedX;
   }
 
+  /**
+   * move object right by speedY
+   */
   moveLeft() {
     this.x -= this.speedX;
   }
@@ -33,7 +39,6 @@ class Movable extends Drawable {
    * play animation loop
    * @param images array
    */
-
   playAnimation(images) {
     if (this.currentImage >= images.length) {
       this.currentImage = 0;
@@ -47,7 +52,6 @@ class Movable extends Drawable {
    * play animation just once
    * @param images array
    */
-
   playAnimationOnce(images) {
     if (this.deathImage < images.length - 1) {
       let path = images[this.deathImage];
@@ -59,7 +63,6 @@ class Movable extends Drawable {
   /**
    * add gravity over time
    */
-
   applyGravity() {
     setInterval(() => {
       if (this.aboveGround() || this.speedY > 0) {
@@ -73,7 +76,6 @@ class Movable extends Drawable {
    * check if above ground
    * @returns true or false
    */
-
   aboveGround() {
     if (this instanceof Throwable) {
       return true;
@@ -87,7 +89,6 @@ class Movable extends Drawable {
    * @param obj other object
    * @returns true or false
    */
-
   isColliding(obj) {
     return (
       this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&
@@ -101,7 +102,6 @@ class Movable extends Drawable {
    * player gets damage
    * @param damage number
    */
-
   playerDamage(damage) {
     this.energy -= damage;
     if (this.energy <= 0 && this.active) {
@@ -121,7 +121,6 @@ class Movable extends Drawable {
    * character is hitted quite before
    * @returns true or false
    */
-
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
@@ -138,7 +137,6 @@ class Movable extends Drawable {
    * @param time interval time
    * @param id id of the created interval
    */
-
   intervals = [];
 
   setStopInterval(func, time) {
@@ -147,6 +145,9 @@ class Movable extends Drawable {
   }
 
   stopAllIntervals() {
-    this.intervals.forEach(clearInterval);
+    this.intervals.forEach((id) => {
+      clearInterval(id);
+    });
+    this.intervals = [];
   }
 }

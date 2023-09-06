@@ -59,7 +59,6 @@ class Sound {
    *  Play music just one time
    * @param index index of the music clip
    */
-
   startBgMusicOnce(index) {
     if (this.active) {
       this.stopBgMusic();
@@ -70,7 +69,6 @@ class Sound {
   /**
    * stop all background music clips
    */
-
   stopBgMusic() {
     this.bg_music.forEach((title) => {
       title.pause();
@@ -81,13 +79,16 @@ class Sound {
    * play sound effect
    * @param index index of the music clip
    */
-
   playSFX(index) {
     if (this.active) {
       this.sfx_sounds[index].play();
     }
   }
 
+  /**
+   * pause sfx to handle multiple sfx sounds
+   * @param index index of sfx sound in sfx_sounds array
+   */
   pauseSFX(index) {
     this.sfx_sounds[index].pause();
   }

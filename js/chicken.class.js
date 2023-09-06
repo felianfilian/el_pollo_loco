@@ -17,6 +17,10 @@ class Chicken extends Movable {
 
   ANIM_SMALL_DEAD = ["img/3_enemies_chicken/chicken_small/2_dead/dead.png"];
 
+  /**
+   * set chicken to a random x position
+   * @param type different types of chicken - small or big
+   */
   constructor(type) {
     if (type == 1) {
       super().loadImage("img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
@@ -38,12 +42,18 @@ class Chicken extends Movable {
     this.animate();
   }
 
+  /**
+   * chicken movement from right to left
+   */
   movement() {
     this.setStopInterval(() => {
       this.moveLeft();
     }, 1000 / 40);
   }
 
+  /**
+   * chicken move and death animation
+   */
   animate() {
     this.setStopInterval(() => {
       if (this.energy <= 0) {

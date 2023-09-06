@@ -20,6 +20,10 @@ class EndbossUI extends Drawable {
     this.width = width;
   }
 
+  /**
+   * set the value for the healthbar
+   * @param percentage value in percent
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES_HEALTH_UI[this.resolveImageIndex()];
@@ -29,7 +33,6 @@ class EndbossUI extends Drawable {
   /**
    * set ui image filled with calculated percent
    */
-
   resolveImageIndex() {
     if (this.percentage == 100) {
       return 5;

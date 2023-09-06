@@ -17,6 +17,12 @@ class Throwable extends Movable {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+  /**
+   * create bootle and setup direction
+   * @param x bottle start position x
+   * @param y bottle start position x
+   * @param direction left or right (direction of the character)
+   */
   constructor(x, y, direction) {
     super().loadImage("img/6_salsa_bottle/salsa_bottle.png");
     this.loadImages(this.ANIM_BOTTLE);
@@ -33,11 +39,10 @@ class Throwable extends Movable {
   }
 
   /**
-   * bottle thros action starting on x an y
-   * @param x
-   * @param y
+   * bottle throw action starting on x an y
+   * @param x bottle start position x
+   * @param y bottle start position y
    */
-
   throw(x, y) {
     this.x = x;
     this.y = y;
@@ -49,6 +54,10 @@ class Throwable extends Movable {
     }, 25);
   }
 
+  /**
+   * animate bottle while trowing
+   * spinning or crashing
+   */
   animateBottle() {
     setInterval(() => {
       this.playAnimation(this.ANIM_BOTTLE);
