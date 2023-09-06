@@ -18,7 +18,6 @@ function init() {
   canvas = document.getElementById("canvas");
   gameoverScreen = document.getElementById("gameover-screen");
   gamewinScreen = document.getElementById("gamewin-screen");
-
   if (window.innerWidth < 720) {
     canvas.width = window.innerWidth;
     document.getElementById("game-title").classList.add("d-none");

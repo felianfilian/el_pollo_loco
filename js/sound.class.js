@@ -22,7 +22,12 @@ class Sound {
       new Audio("./audio/jump_hit.mp3"),
       new Audio("./audio/el_pollo_death.mp3"),
     ];
-    this.startSound();
+    console.log(localStorage.getItem("soundOn"));
+    if (localStorage.getItem("soundOn") == "false") {
+      this.soundOff;
+    } else {
+      this.soundOn();
+    }
   }
 
   /**
@@ -32,14 +37,24 @@ class Sound {
 
   startSound() {
     if (!this.active) {
-      this.active = true;
-      document.getElementById("audio-trigger").src = "./icons/sound-48.png";
-      this.startBgMusic(0);
+      this.soundOn();
     } else {
-      this.active = false;
-      document.getElementById("audio-trigger").src = "./icons/no-sound-48.png";
-      this.stopBgMusic();
+      this.soundOff();
     }
+  }
+
+  soundOn() {
+    this.active = true;
+    localStorage.setItem("soundOn", this.active);
+    document.getElementById("audio-trigger").src = "./icons/sound-48.png";
+    this.startBgMusic(0);
+  }
+
+  soundOff() {
+    this.active = false;
+    localStorage.setItem("soundOn", this.active);
+    document.getElementById("audio-trigger").src = "./icons/no-sound-48.png";
+    this.stopBgMusic();
   }
 
   /**
