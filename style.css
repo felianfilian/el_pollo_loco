@@ -242,7 +242,7 @@ canvas {
 
 /* Responsive View */
 
-@media (max-width: 720px) {
+@media (pointer: coarse) {
   #game-title {
     display: none;
   }
@@ -268,11 +268,25 @@ canvas {
     height: auto;
   }
 
+  .mobile-start-info {
+    display: none;
+  }
+
   #hud-mobile-left {
     display: block;
   }
 
   #hud-mobile-right {
+    display: block;
+  }
+}
+
+@media (max-width: 720px) {
+  .btn-start {
+    display: none;
+  }
+
+  .mobile-start-info {
     display: block;
   }
 }
